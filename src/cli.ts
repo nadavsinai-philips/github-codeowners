@@ -12,7 +12,7 @@ import { OUTPUT_FORMAT } from './lib/types';
 import { validate } from './commands/validate';
 
 const { version } = require('../package.json');
-
+export {who, audit, git, validate};
 commander.version(version);
 
 commander.command('audit')
@@ -110,9 +110,9 @@ commander.command('git [shaA] [shaB]')
     }
   });
 
-
-if (!process.argv.slice(2).length) {
-  commander.outputHelp();
+if (!process.argv.slice(2).length && process.argv[1] === __filename) {
+    commander.outputHelp();
 }
-
-commander.parse(process.argv);
+if (process.argv[1] === __filename) {
+    commander.parse(process.argv);
+}
