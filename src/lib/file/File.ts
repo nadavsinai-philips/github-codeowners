@@ -27,6 +27,10 @@ export class File {
     return `${JSON.stringify({ path: this.path, owners: this.owners, lines: this.lines })}\n`;
   }
 
+  toJSON(){
+    return { path: this.path, owners: this.owners, lines: this.lines };
+  }
+
   toCsv() {
     let line = this.path;
     if (this.owners.length > 0) {
@@ -50,6 +54,8 @@ export class File {
         break;
       case(OUTPUT_FORMAT.CSV):
         stream.write(this.toCsv());
+        break;
+      case(OUTPUT_FORMAT.NONE):
         break;
       default:
         stream.write(this.toTsv());

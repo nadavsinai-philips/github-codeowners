@@ -58,7 +58,7 @@ commander.command('validate')
 
       await validate(options);
     } catch (error) {
-      log.error('failed to run validate command', error);
+      log.error('failed to run validate command', error as Error);
       process.exit(1);
     }
   });
@@ -105,14 +105,14 @@ commander.command('git [shaA] [shaB]')
 
       await git(options);
     } catch (error) {
-      log.error('failed to run git command', error);
+      log.error('failed to run git command', error as Error);
       process.exit(1);
     }
   });
 
-if (!process.argv.slice(2).length && process.argv[1] === __filename) {
+if (!process.argv.slice(2).length) {
     commander.outputHelp();
 }
-if (process.argv[1] === __filename) {
+else {
     commander.parse(process.argv);
 }

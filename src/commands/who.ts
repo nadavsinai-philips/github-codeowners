@@ -14,4 +14,5 @@ export const who = async (options: WhoOptions) => {
   for (const file of files) {
     file.write(options.output, process.stdout);
   }
+  return files;
 };
